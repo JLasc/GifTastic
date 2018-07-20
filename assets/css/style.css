@@ -20,6 +20,13 @@ body {
 }
 
 .hr {
-    margin: 2rem;
+    margin: 2rem auto;
     background-color: lightblue;
+    width: 50%;
+}
+
+/* To be used for dynamically added buttons */
+.button-template {
+    background-color: black;
+    color: lightblue;
 }
