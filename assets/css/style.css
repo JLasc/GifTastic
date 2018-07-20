@@ -1,0 +1,25 @@
+body {
+    background-color: black;
+}
+
+
+
+#buttons {
+    margin: 2rem auto;
+}
+
+#searchbox {
+    width: 25%;
+    margin: 5px auto;
+}
+
+
+.searchbtn, .addbtn {
+    background-color: black;
+    color: lightblue;
+}
+
+.hr {
+    margin: 2rem;
+    background-color: lightblue;
+}
