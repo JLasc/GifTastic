@@ -155,6 +155,10 @@ $(document).ready(function () {
         getRequest()
     });
 
+    $(".clearbtn").on("click", function () {
+        $("#results").empty();
+    });
+
     $(".addbtn").on("click", function () {
         pushtToArray();
         console.log(topics);
