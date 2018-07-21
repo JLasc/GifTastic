@@ -23,9 +23,14 @@ $( document ).ready(function() {
 
     function pushtToArray () {
         userInput = $searchbox.val();
-        topics.push(userInput);
-        btnList(topics); 
-        alert(userInput)
+        
+       
+        if(topics.indexOf(userInput) === -1) {
+            topics.push(userInput)
+            btnList(topics); 
+        } else { 
+            alert("item already added")
+        }
     };
 
 
@@ -36,7 +41,8 @@ $( document ).ready(function() {
          console.log(userInput)
          gifLimit = 10;
          gifRating = "g";
-         url = "https://api.giphy.com/v1/gifs/search?api_key=DPiWXm5H6NRZhgKhV6hw7KkmCpHcPEqy&q=" + gifName + "&limit=" + gifLimit + "&offset=0&rating=" + gifRating + "&lang=en";
+         url = "https://api.giphy.com/v1/gifs/search?api_key=DPiWXm5H6NRZhgKhV6hw7KkmCpHcPEqy&q="
+          + gifName + "&limit=" + gifLimit + "&offset=0&rating=" + gifRating + "&lang=en";
 
          $.get(url).then(function (response) {
              $("#results").empty()
@@ -50,6 +56,7 @@ $( document ).ready(function() {
                     .attr("img-state", "still")
                     .addClass("gif");
                 $("#results").append(newImg)
+          
              }
              console.log(response)
              $searchbox.val("");
@@ -102,6 +109,9 @@ $( document ).ready(function() {
             $(this).attr('img-state', 'still');
         }
     })
+
+
+
 
 
     $(".searchbtn").on("click", function() {
