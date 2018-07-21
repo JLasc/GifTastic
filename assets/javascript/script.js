@@ -5,7 +5,9 @@ $(document).ready(function () {
     var topics = ["Anime", "Cartoon & Comics", "Emotions", "Gaming", "Music", "Movies", "Reaction"];
     var $button = $("#buttons");
     var $searchbox = $("#searchbox");
-
+    
+    
+    
     // Helper function -- dynamically creates buttons for topics array
     var btnList = function (array) {
 
@@ -39,11 +41,12 @@ $(document).ready(function () {
 
     // Search GET request from input field 
     function getRequest() {
-
+        $input = $("#limit");
+        inputVal = $input.val()
         userInput = $searchbox.val();
         gifName = userInput
         console.log(userInput)
-        gifLimit = 25;
+        gifLimit = inputVal;
         gifRating = "g";
         url = "https://api.giphy.com/v1/gifs/search?api_key=DPiWXm5H6NRZhgKhV6hw7KkmCpHcPEqy&q=" + gifName + "&limit=" + gifLimit + "&offset=0&rating=" + gifRating + "&lang=en";
 
@@ -83,10 +86,12 @@ $(document).ready(function () {
 
     //Search GET request from buttons in array
     function btnRequest(arr) {
+        $input = $("#limit");
+        inputVal = $input.val()
         userInput = arr
         gifName = userInput
         console.log(userInput)
-        gifLimit = 10;
+        gifLimit = inputVal;
         gifRating = "g";
         url = "https://api.giphy.com/v1/gifs/search?api_key=DPiWXm5H6NRZhgKhV6hw7KkmCpHcPEqy&q=" + gifName + "&limit=" + gifLimit + "&offset=0&rating=" + gifRating + "&lang=en";
 
@@ -167,4 +172,6 @@ $(document).ready(function () {
     btnList(topics)
 
 });
+
+
 
