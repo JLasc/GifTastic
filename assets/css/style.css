@@ -5,6 +5,10 @@ body {
     font-family: 'Concert One', cursive;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: lightblue;
+}
+
 #buttons {
     margin: 1rem auto;
 }
@@ -21,18 +25,13 @@ body {
 }
 
 .hr {
-    margin: 2rem auto;
     background-color: lightblue;
     width: 50%;
 }
 
-#results {
-    max-width: 100%;
-    margin: 0 auto;
-}
 
 div#results.col-sm-12.text-center img {
-    margin: 1rem;
+    margin: 10px;
 }
 
 /* To be used for dynamically added buttons */
@@ -41,4 +40,38 @@ div#results.col-sm-12.text-center img {
     color: lightblue;
     margin: 5px;
     font-size: 12px;
+}
+
+div.card {
+    width: 232px !important;
+    background-color: black;
+    float: left;
+    margin: 5px;
+}
+
+
+#results {
+    margin-left: 4rem;
+}
+
+.text-result {
+    margin-top: 2rem;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.text {
+    font-style: italic;
+    font-size: 12px;
+
+}
+
+.text, .text-result {
+    color: lightblue;
+    opacity: 0.25;
+}
+
+select#limit.form-control {
+    width: 7%;
+    margin: auto;
 }
