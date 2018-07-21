@@ -1,16 +1,17 @@
-$( document ).ready(function() {
-    
+$(document).ready(function () {
+
+    //Globals
     var i;
     var topics = ["Anime", "Cartoon & Comics", "Emotions", "Gaming", "Music", "Movies", "Reaction"];
     var $button = $("#buttons");
     var $searchbox = $("#searchbox");
 
-
-    var btnList = function(array) {
+    // Helper function -- dynamically creates buttons for topics array
+    var btnList = function (array) {
 
         $button.empty();
 
-        for (i=0; i < array.length; i++) {
+        for (i = 0; i < array.length; i++) {
             newBtn = $("<button>")
                 .text(array[i])
                 .attr("id", "topic-btn")
@@ -21,84 +22,118 @@ $( document ).ready(function() {
 
     };
 
-    function pushtToArray () {
+
+    // Helper Function to add new item to array & prevent duplicates
+    function pushtToArray() {
         userInput = $searchbox.val();
-        
-       
-        if(topics.indexOf(userInput) === -1) {
+
+        if (topics.indexOf(userInput) === -1) {
             topics.push(userInput)
-            btnList(topics); 
-        } else { 
+            btnList(topics);
+        } else {
             alert("item already added")
         }
     };
 
+    $
 
+    // Search GET request from input field 
     function getRequest() {
-        
-         userInput = $searchbox.val();
-         gifName = userInput
-         console.log(userInput)
-         gifLimit = 10;
-         gifRating = "g";
-         url = "https://api.giphy.com/v1/gifs/search?api_key=DPiWXm5H6NRZhgKhV6hw7KkmCpHcPEqy&q="
-          + gifName + "&limit=" + gifLimit + "&offset=0&rating=" + gifRating + "&lang=en";
 
-         $.get(url).then(function (response) {
-             $("#results").empty()
+        userInput = $searchbox.val();
+        gifName = userInput
+        console.log(userInput)
+        gifLimit = 25;
+        gifRating = "g";
+        url = "https://api.giphy.com/v1/gifs/search?api_key=DPiWXm5H6NRZhgKhV6hw7KkmCpHcPEqy&q=" + gifName + "&limit=" + gifLimit + "&offset=0&rating=" + gifRating + "&lang=en";
 
-             for(i=0; i < response.data.length; i++) {
-                 newImg = $("<img>")
+        $.get(url).then(function (response) {
+            $("#results").empty()
+
+            for (i = 0; i < response.data.length; i++) {
+
+                newDiv = $("<div>")
+                    .addClass("card flex-container");
+
+
+                divTwo = $("<div>")
+                    .addClass("card-body");
+
+                newP = $("<p>")
+                    .addClass("card-text")
+                    .text(`Rated: ${response.data[i].rating}`);
+
+                newImg = $("<img>")
                     .attr("src", response.data[i].images.original_still.url)
                     .attr("style", "width:200px; height:200px;")
                     .attr("img-still", response.data[i].images.original_still.url)
                     .attr("img-gif", response.data[i].images.original.url)
                     .attr("img-state", "still")
-                    .addClass("gif");
-                $("#results").append(newImg)
-          
-             }
-             console.log(response)
-             $searchbox.val("");
-         });
-    
+                    .addClass("gif card-img-top")
+
+                divTwo.append(newP)
+                newDiv.append(newImg,divTwo)
+                $("#results").append(newDiv)
+            }
+            console.log(response)
+            $searchbox.val("");
+        });
+
     }
 
-
+    //Search GET request from buttons in array
     function btnRequest(arr) {
-         userInput = arr
-         gifName = userInput
-         console.log(userInput)
-         gifLimit = 10;
-         gifRating = "g";
-         url = "https://api.giphy.com/v1/gifs/search?api_key=DPiWXm5H6NRZhgKhV6hw7KkmCpHcPEqy&q=" + gifName + "&limit=" + gifLimit + "&offset=0&rating=" + gifRating + "&lang=en";
+        userInput = arr
+        gifName = userInput
+        console.log(userInput)
+        gifLimit = 10;
+        gifRating = "g";
+        url = "https://api.giphy.com/v1/gifs/search?api_key=DPiWXm5H6NRZhgKhV6hw7KkmCpHcPEqy&q=" + gifName + "&limit=" + gifLimit + "&offset=0&rating=" + gifRating + "&lang=en";
 
-         $.get(url).then(function (response) {
-             $("#results").empty()
+        $.get(url).then(function (response) {
+            $("#results").empty()
 
-             for(i=0; i < response.data.length; i++) {
-                 newImg = $("<img>")
+            for (i = 0; i < response.data.length; i++) {
+
+                newDiv = $("<div>")
+                    .addClass("card flex-container");
+
+
+                divTwo = $("<div>")
+                    .addClass("card-body");
+
+                newP = $("<p>")
+                    .addClass("card-text")
+                    .text(`Rated: ${response.data[i].rating}`);
+
+                newImg = $("<img>")
                     .attr("src", response.data[i].images.original_still.url)
                     .attr("style", "width:200px; height:200px;")
                     .attr("img-still", response.data[i].images.original_still.url)
                     .attr("img-gif", response.data[i].images.original.url)
                     .attr("img-state", "still")
-                    .addClass("gif");
-                $("#results").append(newImg)
-             }
-             console.log(response)
-         });
-    
+                    .addClass("gif card-img-top")
+
+                divTwo.append(newP)
+                newDiv.append(newImg,divTwo)
+                $("#results").append(newDiv)
+            }
+            console.log(response)
+        });
+
     }
 
-    $searchbox.keypress(function(e) {
-        if(e.which == 13) {
-          getRequest()
+    // Enables pressing enter to search
+    $searchbox.keypress(function (e) {
+        if (e.which == 13) {
+            getRequest()
         }
     });
 
 
-    $(document).on("click", ".gif", function() {
+
+    // Click events 
+    $(document).on("click", ".gif", function () {
         var state = $(this).attr("img-state");
 
         if (state === "still") {
@@ -111,27 +146,25 @@ $( document ).ready(function() {
     })
 
 
-
-
-
-    $(".searchbtn").on("click", function() {
+    $(".searchbtn").on("click", function () {
         getRequest()
     });
-  
-    $(".addbtn").on("click", function() {
+
+    $(".addbtn").on("click", function () {
         pushtToArray();
         console.log(topics);
     });
-    
-        
-    $(document).on("click", "#topic-btn", function() {
+
+
+    $(document).on("click", "#topic-btn", function () {
         topicname = $(this).attr("btn-value");
         btnRequest(topicname)
     });
 
-    
-    btnList(topics)
-    
-});
 
+
+    //Calling function to create starter buttons
+    btnList(topics)
+
+});
 
