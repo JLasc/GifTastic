@@ -21,16 +21,45 @@ $( document ).ready(function() {
 
     };
 
-
     function pushtToArray () {
         userInput = $searchbox.val();
         topics.push(userInput);
         btnList(topics); 
+        alert(userInput)
     };
 
+
     function getRequest() {
-        btnInput = $(this).attr("btn-value")
+        
          userInput = $searchbox.val();
+         gifName = userInput
+         console.log(userInput)
+         gifLimit = 10;
+         gifRating = "g";
+         url = "https://api.giphy.com/v1/gifs/search?api_key=DPiWXm5H6NRZhgKhV6hw7KkmCpHcPEqy&q=" + gifName + "&limit=" + gifLimit + "&offset=0&rating=" + gifRating + "&lang=en";
+
+         $.get(url).then(function (response) {
+             $("#results").empty()
+
+             for(i=0; i < response.data.length; i++) {
+                 newImg = $("<img>")
+                    .attr("src", response.data[i].images.original_still.url)
+                    .attr("style", "width:200px; height:200px;")
+                    .attr("img-still", response.data[i].images.original_still.url)
+                    .attr("img-gif", response.data[i].images.original.url)
+                    .attr("img-state", "still")
+                    .addClass("gif");
+                $("#results").append(newImg)
+             }
+             console.log(response)
+             $searchbox.val("");
+         });
+    
+    }
+
+
+    function btnRequest(arr) {
+         userInput = arr
          gifName = userInput
          console.log(userInput)
          gifLimit = 10;
@@ -55,51 +84,11 @@ $( document ).ready(function() {
     
     }
 
-
-
-    function btnRequest() {
-        btnInput = $(this).attr("btn-value")
-         userInput = $searchbox.val();
-         gifName = userInput
-         console.log(userInput)
-         gifLimit = 10;
-         gifRating = "g";
-         url = "https://api.giphy.com/v1/gifs/search?api_key=DPiWXm5H6NRZhgKhV6hw7KkmCpHcPEqy&q=" + gifName + "&limit=" + gifLimit + "&offset=0&rating=" + gifRating + "&lang=en";
-
-         $.get(url).then(function (response) {
-             $("#results").empty()
-
-             for(i=0; i < response.data.length; i++) {
-                 newImg = $("<img>")
-                    .attr("src", response.data[i].images.original_still.url)
-                    .attr("style", "width:200px; height:200px;")
-                    .attr("img-still", response.data[i].images.original_still.url)
-                    .attr("img-gif", response.data[i].images.original.url)
-                    .attr("img-state", "still")
-                    .addClass("gif");
-                $("#results").append(newImg)
-             }
-             console.log(response)
-         });
-    
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    $searchbox.keypress(function(e) {
+        if(e.which == 13) {
+          getRequest()
+        }
+    });
 
 
     $(document).on("click", ".gif", function() {
@@ -118,7 +107,6 @@ $( document ).ready(function() {
     $(".searchbtn").on("click", function() {
         getRequest()
     });
-    
   
     $(".addbtn").on("click", function() {
         pushtToArray();
@@ -128,7 +116,7 @@ $( document ).ready(function() {
         
     $(document).on("click", "#topic-btn", function() {
         topicname = $(this).attr("btn-value");
-        
+        btnRequest(topicname)
     });
 
     
