@@ -76,6 +76,6 @@ div.card {
 }
 
 select#limit.form-control {
-    width: 7%;
+    width: 5rem;
     margin: auto;
 }
