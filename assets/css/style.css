@@ -1,12 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Concert+One');
+@import url('https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text|Original+Surfer');
+@import url('https://fonts.googleapis.com/css?family=Keania+One');
 
 body {
     background-color: black;
-    font-family: 'Concert One', cursive;
+    font-family: 'Keania One', cursive;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h2 {
     color: lightblue;
+    font-family: 'Libre Barcode 39 Text', cursive;
+    font-size: 3rem;
 }
 
 #buttons {
@@ -19,7 +22,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-.searchbtn, .addbtn {
+.searchbtn, .addbtn, .clearbtn{
     background-color: black;
     color: lightblue;
 }
@@ -27,6 +30,7 @@ h1, h2, h3, h4, h5, h6 {
 .hr {
     background-color: lightblue;
     width: 50%;
+    opacity: 0.25;
 }
 
 
