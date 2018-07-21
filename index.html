@@ -35,19 +35,33 @@
         </div>
 
         <!-- Search -->
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <input class="form-control" type="text" id="searchbox"></input>
-                <button class="btn btn-primary searchbtn">Search</button>
-                <button class="btn btn-primary addbtn">Add</button>
-            </div>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <input class="form-control" type="text" id="searchbox"></input>
+            <button class="btn btn-primary searchbtn">Search</button>
+            <button class="btn btn-primary addbtn">Add</button>
+            <br><br>
+            <label for="limit"># to display:</label>
+            <select class="form-control style" id="limit">
+                <option>10</option>
+                <option>15</option>
+                <option>20</option>
+                <option>25</option>
+            </select>
         </div>
+    </div>
 
+        <div class="row">
+        <div class="col-sm-12 text-center mt-5 result-text">
+        <span class="text-result">Results appear below</span>
+        <p class="text">[click image to play gif]</p>
         <hr class="hr">
+        </div>
+        </div>
 
         <!-- Results -->
         <div class="row">
-            <div class="col-sm-12 text-center" id="results">Results show here</div>
+            <div class="col-sm-12 text-center" id="results"></div>
         </div>
 
 
