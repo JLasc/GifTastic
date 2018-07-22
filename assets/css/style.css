@@ -30,7 +30,7 @@ h2 {
 .hr {
     background-color: lightblue;
     width: 50%;
-    opacity: 0.25;
+    opacity: 0.75;
 }
 
 
@@ -60,19 +60,14 @@ div.card {
 
 .text-result {
     margin-top: 2rem;
-    font-style: italic;
-    font-size: 12px;
 }
 
-.text {
-    font-style: italic;
-    font-size: 12px;
 
-}
 
 .text, .text-result {
     color: lightblue;
-    opacity: 0.25;
+    opacity: 0.75;
+    font-size: 12px;
 }
 
 select#limit.form-control {
